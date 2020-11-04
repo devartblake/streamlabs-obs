@@ -382,7 +382,7 @@ export class YoutubeService extends BasePlatformService<IYoutubeServiceState>
     scheduledStartTime: string,
     options: IYoutubeStartStreamOptions,
   ): Promise<void> {
-    await this.createBroadcast(options);
+    await this.createBroadcast({ ...options, scheduledStartTime });
   }
 
   async fetchNewToken(): Promise<void> {

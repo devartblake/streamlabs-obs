@@ -70,8 +70,11 @@ const crashHandler = require('crash-handler');
 app.commandLine.appendSwitch('force-ui-direction', 'ltr');
 app.commandLine.appendSwitch(
   'ignore-connections-limit',
-  'streamlabs.com,youtube.com,twitch.tv,facebook.com,mixer.com',
+  'streamlabs.com,youtube.com,twitch.tv,facebook.com',
 );
+
+// Remove this when all backend module are on NAPI
+app.allowRendererProcessReuse = false;
 
 /* Determine the current release channel we're
  * on based on name. The channel will always be
@@ -304,7 +307,7 @@ async function startApp() {
 
   workerWindow = new BrowserWindow({
     show: false,
-    webPreferences: { nodeIntegration: true },
+    webPreferences: { nodeIntegration: true, enableRemoteModule: true },
   });
 
   // setTimeout(() => {
@@ -336,7 +339,11 @@ async function startApp() {
     titleBarStyle: 'hidden',
     title: 'Streamlabs OBS',
     backgroundColor: '#17242D',
-    webPreferences: { nodeIntegration: true, webviewTag: true },
+    webPreferences: {
+      nodeIntegration: true,
+      webviewTag: true,
+      enableRemoteModule: true,
+    },
   });
 
   // setTimeout(() => {
@@ -404,7 +411,10 @@ async function startApp() {
     fullscreenable: false,
     titleBarStyle: 'hidden',
     backgroundColor: '#17242D',
-    webPreferences: { nodeIntegration: true },
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: true,
+    },
   });
 
   childWindow.removeMenu();

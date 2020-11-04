@@ -159,21 +159,6 @@ export default class Connect extends TsxComponent<ConnectProps> {
               ] as IListOption<TExtraPlatform>[],
             }}
           />
-          <div style={{ marginTop: '24px' }}>
-            <i
-              class={this.iconForPlatform('mixer')}
-              style={{
-                color: 'var(--mixer)',
-                fontSize: '24px',
-                verticalAlign: 'middle',
-                marginRight: '8px',
-              }}
-            />
-            <span onClick={() => this.showMixerMigration()} style={{ cursor: 'pointer' }}>
-              Mixer was shut down on July 22nd. To migrate your Streamlabs account to another
-              platform, please click here.
-            </span>
-          </div>
           <p>
             <br />
             <span class={styles['link-button']} onClick={this.onSkip}>
